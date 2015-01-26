@@ -251,7 +251,7 @@
             self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
             if ([otherButtonTitles count] == 1) {
                 // Cancel button & 1 other button
-                self.cancelButton.frame = CGRectMake(0, 0, 140, kButtonHeight);
+                self.cancelButton.frame = CGRectMake(0, 0, kAlertwidth/2, kButtonHeight);
             }
             else {
                 // Cancel button + multiple other buttons
@@ -283,7 +283,7 @@
                      ([otherButtonTitles count] == 1 && cancelButtonTitle)) {
                 // 2 other buttons, no cancel or 1 other button and cancel
                 otherTitleButton.tag = i+1;
-                otherTitleButton.frame = CGRectMake(kAlertwidth/2, 0, 139.5, kButtonHeight);
+                otherTitleButton.frame = CGRectMake(kAlertwidth/2, 0, kAlertwidth/2, kButtonHeight);
             }
             else if ([otherButtonTitles count] >= 2) {
                 if (cancelButtonTitle) {

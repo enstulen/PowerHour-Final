@@ -18,7 +18,7 @@ class ViewController: UIViewController, SRFSurfboardDelegate {
         
         self.view.addSubview(accordion)
 
-        self.view.backgroundColor = UIColor(red: 0.925, green: 0.941, blue: 0.945, alpha: 1)
+        //self.view.backgroundColor = UIColor(red: 0.925, green: 0.941, blue: 0.945, alpha: 1)
         
         var easyHeader:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 100))
         easyHeader.setTitle("Without challenges", forState: UIControlState.Normal)
