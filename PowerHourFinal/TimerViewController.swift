@@ -43,8 +43,20 @@ class TimerViewController: UIViewController{
     }
     
     @IBAction func exitButtonPressed(sender: UIButton) {
-        performSegueWithIdentifier("exitSegue", sender: self)
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        var exitAlert:MLAlertView = MLAlertView(title: "Exit", message: "Do you really want to quit?", cancelButtonTitle: "No", otherButtonTitles: ["Yes"], usingBlockWhenTapButton:
+            { (alertView, buttonIndex) in
+                
+                alertView.dismiss()
+                UIApplication.sharedApplication().cancelAllLocalNotifications()
+                self.performSegueWithIdentifier("exitSegue", sender: self)
+            }
+        )
+        
+        exitAlert.titleBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
+        exitAlert.highlightedCancelButtonBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
+        exitAlert.highlightedCancelButtonForegroundColor = UIColor.whiteColor()
+        
+        exitAlert.show()
         
     }
     

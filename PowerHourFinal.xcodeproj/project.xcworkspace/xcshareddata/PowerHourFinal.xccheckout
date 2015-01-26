@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9EF22C60-88C3-4D06-B7E7-4199143C69FB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PowerHourFinal</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>08139F70D9F35BB1611B589AC7AEB6801907BA2C</key>
+		<string>https://github.com/enstulen/PowerHourFinal.git</string>
+		<key>6BF350985EA69C8B1C9C8829C21994ED129D81AF</key>
+		<string>https://github.com/enstulen/PowerHour-Final.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PowerHourFinal.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>08139F70D9F35BB1611B589AC7AEB6801907BA2C</key>
+		<string>../..PowerHourFinal</string>
+		<key>6BF350985EA69C8B1C9C8829C21994ED129D81AF</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/enstulen/PowerHour-Final.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6BF350985EA69C8B1C9C8829C21994ED129D81AF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6BF350985EA69C8B1C9C8829C21994ED129D81AF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PowerHourFinal</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>08139F70D9F35BB1611B589AC7AEB6801907BA2C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PowerHourFinalPowerHourFinal</string>
+		</dict>
+	</array>
+</dict>
+</plist>
