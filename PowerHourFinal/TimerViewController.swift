@@ -9,12 +9,22 @@
 import UIKit
 
 
-class TimerViewController: UIViewController{
+class TimerViewController: UIViewController, SFSwiftNotificationProtocol {
+    var previousNumber = 59
+    var firstRun:Bool = true
+    var token: dispatch_once_t = 0
     var endDate:NSDate = NSDate()
+    var timer:NSTimer = NSTimer()
+    var notifyFrame:CGRect?
+    var notifyView:SFSwiftNotification?
 
     //Timers
     @IBOutlet weak var minuteTimerControl: DDHTimerControl!
     @IBOutlet weak var secondTimerControl: DDHTimerControl!
+    
+    //Label
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var drunkLabel: UILabel!
     
     //Buttons
     @IBOutlet weak var challengeButton: SHFlatButton!
@@ -22,7 +32,6 @@ class TimerViewController: UIViewController{
     @IBOutlet weak var exitButton: UIButton!
 
     //Button actions
-
     @IBAction func challengeButtonPressed(sender: SHFlatButton) {
         var challengeAlert:MLAlertView = MLAlertView(title: "Normal challenge", message: "Sed ante justo, tincidunt fringilla neque in, facilisis consequat tellus.\nCompleted:\t Give 1 shot\n Failed:\t\t\t  Take 2 shots", cancelButtonTitle: "Got it", otherButtonTitles: nil)
         challengeAlert.titleBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
@@ -30,7 +39,8 @@ class TimerViewController: UIViewController{
         challengeAlert.highlightedCancelButtonBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
         challengeAlert.highlightedCancelButtonForegroundColor = UIColor.whiteColor()
         challengeAlert.show()
-        
+        self.textLabel.text = "Give the phone to the next player."
+
     }
     @IBAction func truthButtonPressed(sender: SHFlatButton) {
         
@@ -41,15 +51,16 @@ class TimerViewController: UIViewController{
         truthAlert.highlightedCancelButtonBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
         truthAlert.highlightedCancelButtonForegroundColor = UIColor.whiteColor()
         truthAlert.show()
-        
+        self.textLabel.text = "Give the phone to the next player."
+
     }
     
     @IBAction func exitButtonPressed(sender: UIButton) {
         var exitAlert:MLAlertView = MLAlertView(title: "Exit", message: "Do you really want to quit?", cancelButtonTitle: "No", otherButtonTitles: ["Yes"], usingBlockWhenTapButton:
             { (alertView, buttonIndex) in
-                
                 alertView.dismiss()
                 UIApplication.sharedApplication().cancelAllLocalNotifications()
+                self.timer.invalidate()
                 self.performSegueWithIdentifier("exitSegue", sender: self)
             }
         )
@@ -69,12 +80,25 @@ class TimerViewController: UIViewController{
     //VIEW DID LOAD
     override func viewDidLoad() {
         
+        if firstRun{
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "changeTimer", userInfo: nil, repeats: true)
+            firstRun = false
+        }
+        //View
         self.view.backgroundColor = UIColor(red: 0.925, green: 0.941, blue: 0.945, alpha: 1)
-
         
+        //Textlabels
+        textLabel.textColor = UIColor.whiteColor()
+        textLabel.backgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
+        
+//        drunkLabel.textColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
+//        drunkLabel.text = "sober"
+
+        //Exitbutton
         exitButton.backgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
         exitButton.titleLabel?.textColor = UIColor.whiteColor()
         
+        //Timers
         self.minuteTimerControl.type = DDHTimerType.EqualElements
         self.minuteTimerControl.color = UIColor.orangeColor()
         self.minuteTimerControl.highlightColor = UIColor.redColor()
@@ -89,14 +113,21 @@ class TimerViewController: UIViewController{
         self.secondTimerControl.titleLabel.text = "sec"
         self.secondTimerControl.userInteractionEnabled = false
         
-        
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "changeTimer", userInfo: nil, repeats: true)
-        
+      
         endDate = NSDate(timeIntervalSinceNow: 60*60)
+        
+        //Notification in app
+        
+        notifyFrame = CGRectMake(0, 0, CGRectGetMaxX(self.view.frame), 50)
+        notifyView = SFSwiftNotification(frame: CGRect(x: 0, y: 0, width: CGRectGetMaxX(self.view.frame), height: 50), title: nil, animationType: AnimationType.AnimationTypeBounce, direction: Direction.TopToBottom, delegate: self)
+        notifyView!.backgroundColor = UIColor.orangeColor()
+        notifyView!.label.textColor = UIColor.whiteColor()
+        notifyView!.label.text = "DRINK!"
+        self.view.addSubview(notifyView!)
         
         
         //Notifications
-        println(secondTimerControl.minutesOrSeconds)
+        //println(secondTimerControl.minutesOrSeconds)
         
         var localNotification:UILocalNotification = UILocalNotification()
         localNotification.alertAction = "DRINK!"
@@ -112,16 +143,37 @@ class TimerViewController: UIViewController{
     
     func changeTimer() {
         var timeInterval:NSTimeInterval = self.endDate.timeIntervalSinceNow
-        
         self.minuteTimerControl.minutesOrSeconds = NSInteger(timeInterval/60.0)
-        self.secondTimerControl.minutesOrSeconds = NSInteger(timeInterval%60)
-//        println(secondTimerControl.minutesOrSeconds)
+        self.secondTimerControl.minutesOrSeconds = NSInteger((timeInterval)%60)
+        
+        if secondTimerControl.minutesOrSeconds == previousNumber{
+            println(secondTimerControl.minutesOrSeconds)
+            if self.previousNumber == 0{
+                self.previousNumber = 59
+                self.view.bringSubviewToFront(notifyView!)
+                self.notifyView!.animate(notifyFrame!, delay: 3)
+            }
+            self.previousNumber -= 1
+        }
+
+        
     }
     
-    func valueChanged(sender: DDHTimerControl){
-        println(sender.minutesOrSeconds)
+    
+    func didNotifyFinishedAnimation(results: Bool) {
     }
+    
+    func didTapNotification() {
+        
+        let tapAlert = UIAlertController(title: "SFSwiftNotification",
+            message: "You just tapped the notificatoion",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        tapAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+        self.presentViewController(tapAlert, animated: true, completion: nil)
+    }
+
     
 
     
 }
+

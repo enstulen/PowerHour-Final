@@ -101,6 +101,7 @@
 }
 
 - (void)dismiss {
+    
     self.alpha = 1.0;
     [UIView animateWithDuration:0.4 animations:^{
         self.alpha = 0.0;

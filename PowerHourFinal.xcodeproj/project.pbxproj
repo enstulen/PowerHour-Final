@@ -26,6 +26,9 @@
 		5A94FDB41A72B01000E720B5 /* SHFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A94FDB31A72B01000E720B5 /* SHFlatButton.m */; };
 		5A9C9D171A76D93000346BE5 /* MLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9C9D161A76D93000346BE5 /* MLAlertView.m */; };
 		5AAB12E11A77D368001E689A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB12E01A77D368001E689A /* SettingsViewController.swift */; };
+		5AAB12E31A77DAC4001E689A /* SFSwiftNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB12E21A77DAC4001E689A /* SFSwiftNotification.swift */; };
+		5AAB12E51A780C26001E689A /* edru.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AAB12E41A780C26001E689A /* edru.png */; };
+		5AAB12E71A783215001E689A /* edru2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AAB12E61A783215001E689A /* edru2.png */; };
 		5AEAAFEB1A7267CE0068DA7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEAAFEA1A7267CE0068DA7C /* AppDelegate.swift */; };
 		5AEAAFEE1A7267CE0068DA7C /* PowerHourFinal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5AEAAFEC1A7267CE0068DA7C /* PowerHourFinal.xcdatamodeld */; };
 		5AEAAFF01A7267CE0068DA7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEAAFEF1A7267CE0068DA7C /* ViewController.swift */; };
@@ -76,6 +79,9 @@
 		5A9C9D151A76D93000346BE5 /* MLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLAlertView.h; path = ../Introduction/MLAlertView.h; sourceTree = "<group>"; };
 		5A9C9D161A76D93000346BE5 /* MLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MLAlertView.m; path = ../Introduction/MLAlertView.m; sourceTree = "<group>"; };
 		5AAB12E01A77D368001E689A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		5AAB12E21A77DAC4001E689A /* SFSwiftNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSwiftNotification.swift; sourceTree = "<group>"; };
+		5AAB12E41A780C26001E689A /* edru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edru.png; sourceTree = "<group>"; };
+		5AAB12E61A783215001E689A /* edru2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edru2.png; sourceTree = "<group>"; };
 		5AEAAFE51A7267CE0068DA7C /* PowerHourFinal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PowerHourFinal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AEAAFE91A7267CE0068DA7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AEAAFEA1A7267CE0068DA7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +200,8 @@
 		5A94FDA21A7288ED00E720B5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB12E61A783215001E689A /* edru2.png */,
+				5AAB12E41A780C26001E689A /* edru.png */,
 				5A94FDA31A7288F300E720B5 /* shotglass.png */,
 				5A94FDA41A7288F300E720B5 /* drunk.png */,
 				5A94FDA51A7288F300E720B5 /* difficulty.png */,
@@ -270,6 +278,7 @@
 		5AEAB0171A72715C0068DA7C /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB12E21A77DAC4001E689A /* SFSwiftNotification.swift */,
 				5AFF9F5C1A76A7D0005B54B6 /* Accordion */,
 				5AFF9F5B1A76A7AA005B54B6 /* Timer */,
 				5AFF9F5A1A76A799005B54B6 /* Button */,
@@ -406,8 +415,10 @@
 				5A94FD991A72861E00E720B5 /* Contents.json in Resources */,
 				5A94FDAB1A7288F300E720B5 /* difficulty.png in Resources */,
 				5A94FDA01A72861E00E720B5 /* panels.json in Resources */,
+				5AAB12E51A780C26001E689A /* edru.png in Resources */,
 				5A94FD9B1A72861E00E720B5 /* iPhone@2x.png in Resources */,
 				5A94FDAA1A7288F300E720B5 /* drunk.png in Resources */,
+				5AAB12E71A783215001E689A /* edru2.png in Resources */,
 				5A94FDA91A7288F300E720B5 /* shotglass.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +439,7 @@
 			files = (
 				5AEAB0161A7271590068DA7C /* DDHTimerControl.m in Sources */,
 				5A94FD9C1A72861E00E720B5 /* UIButton+IndexPath.m in Sources */,
+				5AAB12E31A77DAC4001E689A /* SFSwiftNotification.swift in Sources */,
 				5AEAAFF01A7267CE0068DA7C /* ViewController.swift in Sources */,
 				5AEAAFEE1A7267CE0068DA7C /* PowerHourFinal.xcdatamodeld in Sources */,
 				5AEAAFEB1A7267CE0068DA7C /* AppDelegate.swift in Sources */,
