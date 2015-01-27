@@ -17,23 +17,14 @@ class TimerViewController: UIViewController{
     @IBOutlet weak var secondTimerControl: DDHTimerControl!
     
     //Buttons
-    @IBOutlet weak var hardcoreChallengeButton: SHFlatButton!
     @IBOutlet weak var challengeButton: SHFlatButton!
     @IBOutlet weak var truthButton: SHFlatButton!
     @IBOutlet weak var exitButton: UIButton!
 
     //Button actions
-    @IBAction func hardcoreChallengePressed(sender: SHFlatButton) {
-        var hardcoreAlert:MLAlertView = MLAlertView(title: "Hard challenge", message: "Suck the dick of the person next to you for 5 seconds. Sed ante justo, tincidunt fringilla neque in, facilisis consequat tellus. Mauris maximus facilisis mi nec rutrum. ", cancelButtonTitle: "Got it", otherButtonTitles: nil)
-        hardcoreAlert.titleBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
-        hardcoreAlert.titleForegroundColor = UIColor.whiteColor()
-        hardcoreAlert.highlightedCancelButtonBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
-        hardcoreAlert.highlightedCancelButtonForegroundColor = UIColor.whiteColor()
-        hardcoreAlert.show()
-        
-    }
+
     @IBAction func challengeButtonPressed(sender: SHFlatButton) {
-        var challengeAlert:MLAlertView = MLAlertView(title: "Normal challenge", message: "Sed ante justo, tincidunt fringilla neque in, facilisis consequat tellus. Mauris maximus facilisis mi nec rutrum. Cras fermentum in odio ac vulputate. ", cancelButtonTitle: "Got it", otherButtonTitles: nil)
+        var challengeAlert:MLAlertView = MLAlertView(title: "Normal challenge", message: "Sed ante justo, tincidunt fringilla neque in, facilisis consequat tellus.\nCompleted:\t Give 1 shot\n Failed:\t\t\t  Take 2 shots", cancelButtonTitle: "Got it", otherButtonTitles: nil)
         challengeAlert.titleBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
         challengeAlert.titleForegroundColor = UIColor.whiteColor()
         challengeAlert.highlightedCancelButtonBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
@@ -42,7 +33,9 @@ class TimerViewController: UIViewController{
         
     }
     @IBAction func truthButtonPressed(sender: SHFlatButton) {
+        
         var truthAlert:MLAlertView = MLAlertView(title: "Truth", message: "Sed ante justo, tincidunt fringilla neque in, facilisis consequat tellus. Mauris maximus facilisis mi nec rutrum. Cras fermentum in odio ac vulputate.", cancelButtonTitle: "Got it", otherButtonTitles: nil)
+        //truthAlert.titleForegroundColor = UIColor.orangeColor()
         truthAlert.titleBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
         truthAlert.titleForegroundColor = UIColor.whiteColor()
         truthAlert.highlightedCancelButtonBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
@@ -75,6 +68,9 @@ class TimerViewController: UIViewController{
     
     //VIEW DID LOAD
     override func viewDidLoad() {
+        
+        self.view.backgroundColor = UIColor(red: 0.925, green: 0.941, blue: 0.945, alpha: 1)
+
         
         exitButton.backgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
         exitButton.titleLabel?.textColor = UIColor.whiteColor()

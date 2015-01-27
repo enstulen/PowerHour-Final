@@ -18,7 +18,7 @@ class ViewController: UIViewController, SRFSurfboardDelegate {
         
         self.view.addSubview(accordion)
 
-        //self.view.backgroundColor = UIColor(red: 0.925, green: 0.941, blue: 0.945, alpha: 1)
+        self.view.backgroundColor = UIColor(red: 0.925, green: 0.941, blue: 0.945, alpha: 1)
         
         var easyHeader:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 100))
         easyHeader.setTitle("Without challenges", forState: UIControlState.Normal)
@@ -39,21 +39,28 @@ class ViewController: UIViewController, SRFSurfboardDelegate {
         mediumHeader.backgroundColor = UIColor(red:0.56, green:0.29, blue:0.67, alpha:1)
         
         var mediumView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 200))
-        mediumView.backgroundColor = UIColor(red: 0.102, green: 0.737, blue: 0.612, alpha: 1)
+        mediumView.backgroundColor = UIColor(red:0.61, green:0.35, blue:0.71, alpha:1)
         
         var howToPlayHeader:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 100))
         howToPlayHeader.setTitle("How to play", forState: UIControlState.Normal)
         howToPlayHeader.backgroundColor = UIColor(red:0.82, green:0.33, blue:0.1, alpha:1)
         
         var howToPlayView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 200))
-        howToPlayView.backgroundColor = UIColor(red: 0.102, green: 0.737, blue: 0.612, alpha: 1)
+        howToPlayView.backgroundColor = UIColor(red:0.9, green:0.49, blue:0.13, alpha:1)
         
         //How to play button
-        var howToPlayButton:UIButton = UIButton(frame: CGRect(x: UIScreen.mainScreen().bounds.size.width/2 - 100, y: 75, width: 200, height: 50))
+        var howToPlayButton:UIButton = UIButton(frame: CGRect(x: UIScreen.mainScreen().bounds.size.width/2 - 100, y: 25, width: 200, height: 50))
         howToPlayButton.setTitle("How to Play", forState: UIControlState.Normal)
         howToPlayButton.backgroundColor = UIColor(red: 0.906, green: 0.298, blue: 0.235, alpha: 1)
         howToPlayButton.addTarget(self, action: "howToPlay", forControlEvents: UIControlEvents.TouchDown)
         howToPlayView.addSubview(howToPlayButton)
+        
+        //Settings button
+        var settingsButton:UIButton = UIButton(frame: CGRect(x: UIScreen.mainScreen().bounds.size.width/2 - 100, y: 100, width: 200, height: 50))
+        settingsButton.setTitle("Settings", forState: UIControlState.Normal)
+        settingsButton.backgroundColor = UIColor(red: 0.906, green: 0.298, blue: 0.235, alpha: 1)
+        settingsButton.addTarget(self, action: "settings", forControlEvents: UIControlEvents.TouchDown)
+        howToPlayView.addSubview(settingsButton)
         
         accordion.addHeader(easyHeader, withView: easyView)
         accordion.addHeader(mediumHeader, withView: mediumView)
@@ -61,7 +68,7 @@ class ViewController: UIViewController, SRFSurfboardDelegate {
         accordion.setNeedsLayout()
         
         accordion.allowsMultipleSelection = false
-        accordion.allowsEmptySelection = true
+        accordion.allowsEmptySelection = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,9 +90,13 @@ class ViewController: UIViewController, SRFSurfboardDelegate {
         
         presentViewController(surfBoard, animated: true, completion: nil)
     }
+    func settings (){
+        performSegueWithIdentifier("settings", sender: self)
+    }
     func surfboard(surfboard: SRFSurfboardViewController!, didTapButtonAtIndexPath indexPath: NSIndexPath!) {
         surfboard.dismissViewControllerAnimated(true, completion: nil)
     }
+
 
 }
 

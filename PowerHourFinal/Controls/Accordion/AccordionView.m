@@ -49,7 +49,7 @@
     
     self.allowsMultipleSelection = NO;
     
-    self.startsClosed = YES;
+    self.startsClosed = NO;
     
     self.allowsEmptySelection = YES;
 }
@@ -107,7 +107,7 @@
         }
         
         if (!self.startsClosed && [selectionIndexes count] == 0) {
-            [self setSelectedIndex:0];
+            [self setSelectedIndex:2];
         }
     }
 }
