@@ -145,7 +145,7 @@ const CGFloat kDDHLabelHeight = kDDHLabelWidth;
     self.majorShapeLayer.lineWidth = self.ringWidth;
     self.majorShapeLayer.strokeEnd = (float)self.minutesOrSeconds/self.maxValue;
     if (self.type >= DDHTimerTypeNumberOfTypes) {
-        NSAssert1(false, @"The given type (%u) is not supported", self.type);
+        //NSAssert1(false, @"The given type (%u) is not supported", self.type);
     }
     
     if (self.type != DDHTimerTypeSolid) {
