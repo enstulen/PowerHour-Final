@@ -17,6 +17,10 @@ class TimerViewController: UIViewController, SFSwiftNotificationProtocol {
     var timer:NSTimer = NSTimer()
     var notifyFrame:CGRect?
     var notifyView:SFSwiftNotification?
+    var withChallenge:Int?
+    var i = 0;
+
+    
 
     //Timers
     @IBOutlet weak var minuteTimerControl: DDHTimerControl!
@@ -25,7 +29,7 @@ class TimerViewController: UIViewController, SFSwiftNotificationProtocol {
     //Label
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var drunkLabel: UILabel!
-    
+
     //Buttons
     @IBOutlet weak var challengeButton: SHFlatButton!
     @IBOutlet weak var truthButton: SHFlatButton!
@@ -33,18 +37,29 @@ class TimerViewController: UIViewController, SFSwiftNotificationProtocol {
 
     //Button actions
     @IBAction func challengeButtonPressed(sender: SHFlatButton) {
-        var challengeAlert:MLAlertView = MLAlertView(title: "Normal challenge", message: "Sed ante justo, tincidunt fringilla neque in, facilisis consequat tellus.\nCompleted:\t Give 1 shot\n Failed:\t\t\t  Take 2 shots", cancelButtonTitle: "Got it", otherButtonTitles: nil)
+        
+        
+        if(i >= challengeArray.count){
+            i = 0
+        }
+
+        var challengeAlert:MLAlertView = MLAlertView(title: "Normal challenge", message: challengeArray[randomNumberChallengeArray[i]], cancelButtonTitle: "Got it", otherButtonTitles: nil)
         challengeAlert.titleBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
         challengeAlert.titleForegroundColor = UIColor.whiteColor()
         challengeAlert.highlightedCancelButtonBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
         challengeAlert.highlightedCancelButtonForegroundColor = UIColor.whiteColor()
         challengeAlert.show()
         self.textLabel.text = "Give the phone to the next player."
-
+        i++
+        
     }
     @IBAction func truthButtonPressed(sender: SHFlatButton) {
         
-        var truthAlert:MLAlertView = MLAlertView(title: "Truth", message: "Sed ante justo, tincidunt fringilla neque in, facilisis consequat tellus. Mauris maximus facilisis mi nec rutrum. Cras fermentum in odio ac vulputate.", cancelButtonTitle: "Got it", otherButtonTitles: nil)
+        if(i >= truthArray.count - 1){
+            i = 0
+        }
+        
+        var truthAlert:MLAlertView = MLAlertView(title: "Truth", message: truthArray[randomNumberTruthArray[i]], cancelButtonTitle: "Got it", otherButtonTitles: nil)
         //truthAlert.titleForegroundColor = UIColor.orangeColor()
         truthAlert.titleBackgroundColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
         truthAlert.titleForegroundColor = UIColor.whiteColor()
@@ -52,6 +67,7 @@ class TimerViewController: UIViewController, SFSwiftNotificationProtocol {
         truthAlert.highlightedCancelButtonForegroundColor = UIColor.whiteColor()
         truthAlert.show()
         self.textLabel.text = "Give the phone to the next player."
+        i++
 
     }
     
@@ -61,7 +77,7 @@ class TimerViewController: UIViewController, SFSwiftNotificationProtocol {
                 alertView.dismiss()
                 UIApplication.sharedApplication().cancelAllLocalNotifications()
                 self.timer.invalidate()
-                self.performSegueWithIdentifier("exitSegue", sender: self)
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         )
         
@@ -79,11 +95,14 @@ class TimerViewController: UIViewController, SFSwiftNotificationProtocol {
     
     //VIEW DID LOAD
     override func viewDidLoad() {
+
         
         if firstRun{
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "changeTimer", userInfo: nil, repeats: true)
             firstRun = false
         }
+        
+        
         //View
         self.view.backgroundColor = UIColor(red: 0.925, green: 0.941, blue: 0.945, alpha: 1)
         
@@ -147,7 +166,7 @@ class TimerViewController: UIViewController, SFSwiftNotificationProtocol {
         self.secondTimerControl.minutesOrSeconds = NSInteger((timeInterval)%60)
         
         if secondTimerControl.minutesOrSeconds == previousNumber{
-            println(secondTimerControl.minutesOrSeconds)
+            //println(secondTimerControl.minutesOrSeconds)
             if self.previousNumber == 0{
                 self.previousNumber = 59
                 self.view.bringSubviewToFront(notifyView!)
@@ -155,8 +174,6 @@ class TimerViewController: UIViewController, SFSwiftNotificationProtocol {
             }
             self.previousNumber -= 1
         }
-
-        
     }
     
     
@@ -171,8 +188,27 @@ class TimerViewController: UIViewController, SFSwiftNotificationProtocol {
         tapAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
         self.presentViewController(tapAlert, animated: true, completion: nil)
     }
-
     
+    func setWithChallenges(challengeNumber: Int){
+        if (challengeNumber == 0){
+             self.withChallenge = 0
+        }
+        else{
+             self.withChallenge = 1
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if withChallenge == 0{
+            challengeButton.hidden = true
+            truthButton.hidden = true
+        }
+        else{
+            challengeButton.hidden = false
+            truthButton.hidden = false
+        }
+    }
+
 
     
 }

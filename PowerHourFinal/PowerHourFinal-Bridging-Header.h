@@ -6,6 +6,8 @@
 #import "DDHTimerControl.h"
 #import "SHFlatButton.h"
 #import "MLAlertView.h"
+#import "BFPaperCheckbox.h"
+
 
 //Surfboard
 #import "SRFSurfboard.h"

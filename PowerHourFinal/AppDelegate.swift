@@ -17,13 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SRFSurfboardDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
-        
-        var navigationBarAppearace = UINavigationBar.appearance()
-        
-        navigationBarAppearace.tintColor = UIColor.whiteColor()
-        navigationBarAppearace.barTintColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
-        
         SHFlatButton.appearance().shadowHeight = 5
         SHFlatButton.appearance().buttonColor = UIColor(red:0.1, green:0.74, blue:0.61, alpha:1)
         SHFlatButton.appearance().shadowColor = UIColor(red:0.13, green:0.62, blue:0.52, alpha:1)

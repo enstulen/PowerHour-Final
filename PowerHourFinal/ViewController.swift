@@ -9,11 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController, SRFSurfboardDelegate {
+    
+    var withChallenge:Int?
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+                
         let screenWidth = UIScreen.mainScreen().bounds.size.width
         let screenHeight = UIScreen.mainScreen().bounds.size.height
         
@@ -39,7 +41,7 @@ class ViewController: UIViewController, SRFSurfboardDelegate {
         
         
         //Without challenges
-        var withoutChallengesHeader:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: screenHeight/5))
+        var withoutChallengesHeader:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: screenHeight/5+1))
         withoutChallengesHeader.setTitle("Without challenges", forState: UIControlState.Normal)
         withoutChallengesHeader.backgroundColor = UIColor(red:0.56, green:0.29, blue:0.67, alpha:1)
         
@@ -53,17 +55,16 @@ class ViewController: UIViewController, SRFSurfboardDelegate {
         withoutChallengesView.addSubview(withoutChallengesButton)
         
         
-        
-        var howToPlayHeader:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: screenHeight/5))
+        var howToPlayHeader:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: screenHeight/5+2))
         howToPlayHeader.setTitle("How to play", forState: UIControlState.Normal)
         howToPlayHeader.backgroundColor = UIColor(red:0.82, green:0.33, blue:0.1, alpha:1)
         
-        var howToPlayView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: (screenHeight/5)*2))
+        var howToPlayView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: (screenHeight/5)*2+3))
         howToPlayView.backgroundColor = UIColor(red:0.9, green:0.49, blue:0.13, alpha:1)
         
         //How to play button
         var howToPlayButton:UIButton = UIButton(frame: CGRect(x: screenWidth/2 - 100, y: 25, width: 200, height: 50))
-        howToPlayButton.setTitle("How to Play", forState: UIControlState.Normal)
+        howToPlayButton.setTitle("Rules", forState: UIControlState.Normal)
         howToPlayButton.backgroundColor = UIColor(red: 0.906, green: 0.298, blue: 0.235, alpha: 1)
         howToPlayButton.addTarget(self, action: "howToPlay", forControlEvents: UIControlEvents.TouchDown)
         howToPlayView.addSubview(howToPlayButton)
@@ -90,9 +91,11 @@ class ViewController: UIViewController, SRFSurfboardDelegate {
     }
   
     func withChallengePlay (){
+        self.withChallenge = 1
         performSegueWithIdentifier("playSegue", sender: self)
     }
     func withoutChallengePlay (){
+        self.withChallenge = 0
         performSegueWithIdentifier("playSegue", sender: self)
     }
     func howToPlay (){
@@ -106,11 +109,25 @@ class ViewController: UIViewController, SRFSurfboardDelegate {
         
         presentViewController(surfBoard, animated: true, completion: nil)
     }
+    
     func settings (){
         performSegueWithIdentifier("settings", sender: self)
     }
     func surfboard(surfboard: SRFSurfboardViewController!, didTapButtonAtIndexPath indexPath: NSIndexPath!) {
         surfboard.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "playSegue") {
+            let timerViewController = segue.destinationViewController as TimerViewController
+            if (self.withChallenge == 0){
+                timerViewController.setWithChallenges(0)
+            }
+            else{
+                timerViewController.setWithChallenges(1)
+
+            }
+        }
     }
 
 
