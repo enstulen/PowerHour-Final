@@ -1,2 +1,0 @@
-# PowerHourFinal
-Drinking game
